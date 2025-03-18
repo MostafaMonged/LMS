@@ -1,0 +1,150 @@
+<!-- filepath: app/templates/dashboard/member_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS - Member Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Library Management System</h1>
+            <div class="user-info">
+                <span id="user-name">Loading...</span>
+                <button id="logout-btn" class="btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container dashboard">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#" id="nav-home" class="active">Dashboard Home</a></li>
+                <li><a href="#" id="nav-search-books">Search Books</a></li>
+                <li><a href="#" id="nav-my-books">My Books</a></li>
+                <li><a href="#" id="nav-history">Borrowing History</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <div id="home-section" class="dashboard-section active">
+                <h2>Welcome to the Library</h2>
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <h3>Books Borrowed</h3>
+                        <p id="books-borrowed">Loading...</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Books Due Soon</h3>
+                        <p id="books-due-soon">Loading...</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Overdue Books</h3>
+                        <p id="overdue-books">Loading...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="search-books-section" class="dashboard-section">
+                <h2>Search Books</h2>
+                <div class="search-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="search-title">Title:</label>
+                            <input type="text" id="search-title">
+                        </div>
+                        <div class="form-group">
+                            <label for="search-author">Author:</label>
+                            <input type="text" id="search-author">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="search-category">Category:</label>
+                            <input type="text" id="search-category">
+                        </div>
+                        <div class="form-group">
+                            <button id="search-btn" class="btn-primary">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-results">
+                    <h3>Search Results</h3>
+                    <div class="table-container">
+                        <table id="search-results-table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Category</th>
+                                    <th>Available Copies</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="search-results-list">
+                                <!-- Search results will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="my-books-section" class="dashboard-section">
+                <h2>My Books</h2>
+                <div class="table-container">
+                    <table id="my-books-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Checkout Date</th>
+                                <th>Due Date</th>
+                                <th>Days Left</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="my-books-list">
+                            <!-- Borrowed books will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="history-section" class="dashboard-section">
+                <h2>Borrowing History</h2>
+                <div class="table-container">
+                    <table id="history-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Checkout Date</th>
+                                <th>Due Date</th>
+                                <th>Return Date</th>
+                                <th>Fine</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-list">
+                            <!-- Borrowing history will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Include utility scripts first -->
+    <script src="{{ url_for('static', filename='js/utils/auth-utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/utils/dashboard-common.js') }}"></script>
+
+    <!-- Include dashboard-specific scripts -->
+    <script src="{{ url_for('static', filename='js/dashboard/member-dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard/book-search.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard/my-books.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard/borrowing-history.js') }}"></script>
+</body>
+
+</html>

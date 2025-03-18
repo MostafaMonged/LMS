@@ -33,9 +33,17 @@ def create_app(config_class='app.config.DevelopmentConfig'):
     app.register_blueprint(search_bp, url_prefix='/api')
     #register blueprints for frontend views
     from app.views.auth_views import auth_view_bp
+    from app.views.dashboard_views import dashboard_view_bp
     from app.views.user_management_views import user_management_view_bp
+    from app.views.book_management_views import book_management_view_bp
+    from app.views.borrow_views import borrow_view_bp
     app.register_blueprint(user_management_view_bp)
-    app.register_blueprint(auth_view_bp)
+    app.register_blueprint(book_management_view_bp)
+    app.register_blueprint(borrow_view_bp)
+    
+    app.register_blueprint(auth_view_bp, url_prefix='/')
+    app.register_blueprint(dashboard_view_bp, url_prefix='/dashboard')
+
 
 
 

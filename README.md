@@ -41,7 +41,7 @@ After installing the dependencies, you need to set up the database with these co
 
 ```bash
 flask db init
-flask db migrate
+flask db migrate -m "Initial migration"
 flask db upgrade
 ```
 
@@ -67,7 +67,7 @@ LMS/
 │   ├── API Documentation/  # API endpoints documentation
 │   └── Database Documentation/ # Database schema documentation
 │
-├── instance/               # Instance-specific data
+├── instance/               # (DB) appears when you run db initialization flask migration
 │   ├── library.db          # Main database will appear when you run db initialization flask migration commands
 │   └── test.db             # Test database
 │

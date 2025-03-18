@@ -40,9 +40,9 @@ pip install -r requirements.txt
 After installing the dependencies, you need to set up the database with these commands:
 
 ```bash
-flask db init      # Initialize migrations directory if not present
-flask db migrate   # Create migration script based on models
-flask db upgrade   # Apply migrations to create the database
+flask db init
+flask db migrate
+flask db upgrade
 ```
 
 ## Required Dependencies
@@ -97,6 +97,8 @@ python run.py
 ```
 
 By default, the server will run on `http://127.0.0.1:5000`.
+
+### Then Open another terminal to send requests to the server
 
 ## Sample API Commands
 
@@ -220,7 +222,7 @@ pytest -m search # to run all search tests
 
 **Tests logs:**
 
-For information about tests logs you will find generated log files under **tests/logs/**
+For information about tests logs you will find generated log files under **tests/logs/** directory
 
 ## Additional Resources in Deliverables Directory
 

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS - Librarian Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Library Management System</h1>
+            <div class="user-info">
+                <span id="user-name">Loading...</span>
+                <button id="logout-btn" class="btn-secondary">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container dashboard">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#" id="nav-home" class="active">Dashboard Home</a></li>
+                <li><a href="#" id="nav-users">User Management</a></li>
+                <li><a href="#" id="nav-books">Book Management</a></li>
+                <li><a href="#" id="nav-transactions">Transactions</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <div id="home-section" class="dashboard-section active">
+                <h2>Librarian Dashboard</h2>
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <h3>Total Books</h3>
+                        <p id="total-books">Loading...</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Available Books</h3>
+                        <p id="available-books">Loading...</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Total Members</h3>
+                        <p id="total-members">Loading...</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Overdue Books</h3>
+                        <p id="overdue-books">Loading...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="users-section" class="dashboard-section">
+                <h2>User Management</h2>
+                <div class="actions">
+                    <input type="text" id="user-search" placeholder="Search by name or email">
+                    <div class="search-by">
+                        <label>
+                            <input type="radio" name="user-search-by" value="barcode" id="search-by-barcode">
+                            Search by Barcode
+                        </label>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="users-table">
+                        <thead>
+                            <tr>
+                                <th>Barcode</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-list">
+                            <!-- Users will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="dashboard-section" id="books-section">
+                <h2>Book Management</h2>
+
+                <div class="search-container">
+                    <div class="search-row">
+                        <input type="text" id="book-search-title" placeholder="Search by Title">
+                        <input type="text" id="book-search-author" placeholder="Search by Author">
+                    </div>
+                    <div class="search-row">
+                        <input type="text" id="book-search-category" placeholder="Search by Category">
+                        <input type="text" id="book-search-barcode" placeholder="Search by Barcode">
+                    </div>
+                    <div class="search-buttons">
+                        <button id="book-search-btn" class="btn-primary">Search</button>
+                        <button id="book-search-clear" class="btn-secondary">Clear</button>
+                    </div>
+                </div>
+
+                <button id="add-book-btn" class="btn-primary">Add New Book</button>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Barcode</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Copies</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="books-list">
+                        <tr>
+                            <td colspan="6">Loading books...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="transactions-section" class="dashboard-section">
+                <h2>Transactions</h2>
+                <div class="transactions-tabs">
+                    <button class="tab-btn active" data-tab="issue-book">Issue Book</button>
+                    <button class="tab-btn" data-tab="return-book">Return Book</button>
+                    <button class="tab-btn" data-tab="overdue">Overdue Books</button>
+                </div>
+
+                <div id="issue-book-tab" class="tab-content active">
+                    <h3>Issue Book to User</h3>
+                    <form id="issue-book-form">
+                        <div class="form-group">
+                            <label for="issue-user-barcode">User Barcode:</label>
+                            <input type="text" id="issue-user-barcode" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="issue-book-barcode">Book Barcode:</label>
+                            <input type="text" id="issue-book-barcode" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Issue Book</button>
+                    </form>
+                </div>
+
+                <div id="return-book-tab" class="tab-content">
+                    <h3>Return Book</h3>
+                    <form id="return-book-form">
+                        <div class="form-group">
+                            <label for="return-transaction-id">Transaction ID:</label>
+                            <input type="number" id="return-transaction-id" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Return Book</button>
+                    </form>
+                </div>
+
+                <div id="overdue-tab" class="tab-content">
+                    <h3>Overdue Books</h3>
+                    <div class="table-container">
+                        <table id="overdue-table">
+                            <thead>
+                                <tr>
+                                    <th>Transaction ID</th>
+                                    <th>User</th>
+                                    <th>Book</th>
+                                    <th>Due Date</th>
+                                    <th>Days Overdue</th>
+                                    <th>Fine</th>
+                                </tr>
+                            </thead>
+                            <tbody id="overdue-list">
+                                <!-- Overdue books will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Include utility scripts first -->
+    <script src="{{ url_for('static', filename='js/utils/auth-utils.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/utils/dashboard-common.js') }}"></script>
+
+    <!-- Include dashboard-specific scripts -->
+    <script src="{{ url_for('static', filename='js/dashboard/librarian-dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard/user-management.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard/book-management.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard/transactions.js') }}"></script>
+</body>
+
+</html>

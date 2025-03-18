@@ -10,5 +10,5 @@ class Reservation(db.Model):
     reservation_date = db.Column(db.DateTime, default=datetime.utcnow)
     status = db.Column(db.Enum('Pending', 'Fulfilled', 'Cancelled'), default='Pending')
 
-    user = db.relationship('User', backref=db.backref('reservations', lazy=True))
-    book = db.relationship('Book', backref=db.backref('reservations', lazy=True))
+    user = db.relationship('User', backref='reservations', lazy=True)
+    book = db.relationship('Book', backref='reservations', lazy=True)

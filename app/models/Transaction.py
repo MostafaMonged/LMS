@@ -12,5 +12,5 @@ class Transaction(db.Model):
     return_date = db.Column(db.DateTime, nullable=True)
     fine_amount = db.Column(db.Float, default=0.0)
 
-    user = db.relationship('User', backref=db.backref('transactions', lazy=True))
-    book_copy = db.relationship('Book_Copy', backref=db.backref('transactions', lazy=True))
+    user = db.relationship('User', backref='transactions', lazy=True)
+    book_copy = db.relationship('BookCopy', backref='transactions', lazy=True)

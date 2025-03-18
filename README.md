@@ -13,12 +13,7 @@ Follow these steps to set up the Library Management System on your local machine
 
 ### Installation Steps
 
-1. **Clone the repository**
-
-```bash
-git clone https://github.com/yourusername/LMS.git
-cd LMS
-```
+1. **Clone the repository and open LMS directory (the project root)**
 
 2. **Create and activate a virtual environment**
 
@@ -43,6 +38,43 @@ pip install -r requirements.txt
 ## Required Dependencies
 
 All dependencies are listed in requirements.txt.
+
+## Project Structure
+
+```
+LMS/
+├── app/                    # Application package
+│   ├── models/             # Database models
+│   ├── routes/             # API routes
+│   ├── services/           # Business logic
+│   ├── views/              # Frontend views
+│   ├── static/             # Static assets
+│   ├── templates/          # HTML templates
+│   ├── __init__.py         # Application initialization
+│   └── config.py           # Configuration settings
+│
+├── Deliverables/           # Documentation
+│   ├── API Documentation/  # API endpoints documentation
+│   └── Database Documentation/ # Database schema documentation
+│
+├── instance/               # Instance-specific data
+│   ├── library.db          # Main database
+│   └── test.db             # Test database
+│
+├── migrations/             # Database migrations
+│   └── versions/           # Migration scripts
+│
+├── tests/                  # Test suite
+│   ├── conftest.py         # Test configuration
+│   ├── test_auth.py        # Authentication tests
+│   ├── test_book_management.py # Book management tests
+│   ├── test_borrow.py      # Borrowing functionality tests
+│   └── test_search.py      # Search functionality tests
+│
+├── pytest.ini              # Pytest configurations
+├── requirements.txt        # All dependencies needed
+└── run.py                  # Application entry point
+```
 
 ## Run Commands
 

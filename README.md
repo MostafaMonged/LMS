@@ -64,7 +64,7 @@ LMS/
 ├── migrations/             # Database migrations
 │   └── versions/           # Migration scripts
 │
-├── tests/                  # Test suite
+├── tests/                  # Test suites
 │   ├── conftest.py         # Test configuration
 │   ├── test_auth.py        # Authentication tests
 │   ├── test_book_management.py # Book management tests
@@ -116,12 +116,6 @@ curl -X POST http://127.0.0.1:5000/auth/login \
 ```
 
 **Using the returned token:**
-```bash
-export TOKEN= <the returned access_token from login>
-```
-
-### Using the returned token:
-
 **For macOS/Linux (Bash/Zsh):**
 ```bash
 export TOKEN="use the returned access_token from login here"

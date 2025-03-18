@@ -35,6 +35,16 @@ source venv/bin activate
 pip install -r requirements.txt
 ```
 
+4. **Initialize the database**
+
+After installing the dependencies, you need to set up the database with these commands:
+
+```bash
+flask db init      # Initialize migrations directory if not present
+flask db migrate   # Create migration script based on models
+flask db upgrade   # Apply migrations to create the database
+```
+
 ## Required Dependencies
 
 All dependencies are listed in requirements.txt.
@@ -58,7 +68,7 @@ LMS/
 │   └── Database Documentation/ # Database schema documentation
 │
 ├── instance/               # Instance-specific data
-│   ├── library.db          # Main database
+│   ├── library.db          # Main database will appear when you run db initialization flask migration commands
 │   └── test.db             # Test database
 │
 ├── migrations/             # Database migrations
@@ -88,9 +98,9 @@ python run.py
 
 By default, the server will run on `http://127.0.0.1:5000`.
 
-### Sample Commands for Interacting with the API
+## Sample API Commands
 
-You can use tools like cURL or Postman to interact with the API. Here are some sample commands:
+### Linux/macOS Commands
 
 #### Authentication
 
@@ -115,28 +125,21 @@ curl -X POST http://127.0.0.1:5000/auth/login \
   -d '{"email": "ahmed@library.com", "password": "password123"}'
 ```
 
-**Using the returned token:**
-**For macOS/Linux (Bash/Zsh):**
+**Store the returned token:**
 ```bash
 export TOKEN="use the returned access_token from login here"
 ```
 
-**For Windows Command Prompt:**
-```bash
-set TOKEN=use the returned access_token from login here
-```
-
-**For Windows PowerShell:**
-```bash
-$env:TOKEN="use the returned access_token from login here"
-```
-
-Then you can use `$TOKEN` (Bash/Zsh), `%TOKEN%` (Command Prompt), or `$env:TOKEN` (PowerShell) in subsequent commands.
-
 #### API Endpoints
+
 **Search for books by title:**
 ```bash
 curl -X GET "http://127.0.0.1:5000/api/search/books?title=Gatsby" 
+```
+
+**Get all users:**
+```bash
+curl -X GET http://127.0.0.1:5000/api/users
 ```
 
 **Add a new book (requires Librarian token):**
@@ -147,12 +150,57 @@ curl -X POST http://127.0.0.1:5000/api/books \
   -d '{"title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "subject_category": "Fiction", "publication_date": "1925-04-10"}'
 ```
 
+### Windows PowerShell Commands
+
+#### Authentication
+
+**Register a librarian user:**
+```powershell
+curl -X POST http://127.0.0.1:5000/auth/register `
+  -H "Content-Type: application/json" `
+  -d '{"name": "Ahmed Librarian", "email": "ahmed@library.com", "password": "password123", "role": "Librarian"}'
+```
+
+**Register a member user:**
+```powershell
+curl -X POST http://127.0.0.1:5000/auth/register `
+  -H "Content-Type: application/json" `
+  -d '{"name": "Mostafa Member", "email": "mostafa@example.com", "password": "password123", "role": "Member"}'
+```
+
+**Login:**
+```powershell
+curl -X POST http://127.0.0.1:5000/auth/login `
+  -H "Content-Type: application/json" `
+  -d '{"email": "ahmed@library.com", "password": "password123"}'
+```
+
+**Store the returned token:**
+```powershell
+$env:TOKEN="use the returned access_token from login here"
+```
+
+#### API Endpoints
+
+**Search for books by title:**
+```powershell
+curl -X GET "http://127.0.0.1:5000/api/search/books?title=Gatsby" 
+```
+
 **Get all users:**
-```bash
+```powershell
 curl -X GET http://127.0.0.1:5000/api/users
 ```
 
-### Running Tests
+**Add a new book (requires Librarian token):**
+```powershell
+curl -X POST http://127.0.0.1:5000/api/books `
+  -H "Content-Type: application/json" `
+  -H "Authorization: Bearer $env:TOKEN" `
+  -d '{"title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "subject_category": "Fiction", "publication_date": "1925-04-10"}'
+```
+
+## Running Tests
 
 The project includes comprehensive tests written with pytest. Here's how to run them:
 
@@ -163,24 +211,18 @@ pytest
 
 **Run specific test categories (with pytest markers):**
 ```bash
-pytest -m auth # to run all authenitcation tests
+pytest -m auth # to run all authentication tests
 pytest -m user_management # to run all user_management tests
 pytest -m book_management # to run all book_management tests
 pytest -m borrowing # to run all borrowing tests
 pytest -m search # to run all search tests
-
 ```
 
 **Tests logs:**
 
-For information about tests logs you will find generated log files under **tests/logs/** 
+For information about tests logs you will find generated log files under **tests/logs/**
 
 ## Additional Resources in Deliverables Directory
 
 - API Documentation - Details of all API endpoints
 - Database Documentation - Database structure and relationships
-
-
-
-
-

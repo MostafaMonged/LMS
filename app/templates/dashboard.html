@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, <span id="userName">{{ user.name }}</span>!</h2>
+        
+        <div id="dashboardContent">
+            <!-- Default loading state -->
+            <p id="loadingMessage">Loading your dashboard...</p>
+        </div>
+        
+        <button id="logoutButton">Logout</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch user data from the backend API
+            fetch('/api/user/dashboard', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.role === 'member') {
+                    // Member-specific content
+                    document.getElementById('dashboardContent').innerHTML = `
+                        <h3>Your Borrowed Books</h3>
+                        <ul id="borrowedBooksList"></ul>
+                        <h3>Your Reservations</h3>
+                        <ul id="reservationsList"></ul>
+                    `;
+                    
+                    // Populate borrowed books and reservations
+                    data.borrowed_books.forEach(book => {
+                        document.getElementById('borrowedBooksList').innerHTML += `<li>${book.title}</li>`;
+                    });
+                    
+                    data.reservations.forEach(reservation => {
+                        document.getElementById('reservationsList').innerHTML += `<li>${reservation.book.title}</li>`;
+                    });
+                } else if (data.role === 'librarian') {
+                    // Librarian-specific content
+                    document.getElementById('dashboardContent').innerHTML = `
+                        <h3>Manage Books</h3>
+                        <button onclick="window.location.href='/manage-books'">Go to Manage Books</button>
+                        <h3>Manage Users</h3>
+                        <button onclick="window.location.href='/manage-users'">Go to Manage Users</button>
+                    `;
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
+                document.getElementById('dashboardContent').innerHTML = 'Error loading dashboard. Please try again later.';
+            });
+            
+            // Logout functionality
+            document.getElementById('logoutButton').addEventListener('click', function () {
+                localStorage.removeItem('token'); // Remove JWT token
+                window.location.href = '/login'; // Redirect to login page
+            });
+        });
+    </script>
+</body>
+</html>

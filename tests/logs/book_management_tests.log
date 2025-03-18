@@ -1,0 +1,22 @@
+2025-03-18 14:55:30,726 - INFO - Starting test suite for marker: book_management
+2025-03-18 14:55:31,071 - INFO - Librarian registered and logged in successfully for TestAddBook.
+2025-03-18 14:55:31,085 - INFO - Test Add Book - Input: {'title': 'Book Three', 'author': 'Author Three', 'subject_category': 'History', 'publication_date': '2019-07-20'} - Output: {'barcode': '50d039fc-674a-435c-8dfc-068355a3c09e', 'book_id': 1, 'message': 'Book added successfully'}
+2025-03-18 14:55:31,090 - INFO - Test Add Book Missing Fields - Input: {'title': 'Incomplete Book'} - Output: {'error': 'Missing required fields'}
+2025-03-18 14:55:31,094 - INFO - Test Add Duplicate Book - Input: {'title': 'Book Three', 'author': 'Author Three', 'subject_category': 'History', 'publication_date': '2019-07-20'} - Output: {'error': 'A book with the same title and author already exists'}
+2025-03-18 14:55:31,315 - INFO - Books added successfully for TestGetBooks.
+2025-03-18 14:55:31,325 - INFO - Test Get All Books - Output: {'books': [{'author': 'Author Three', 'available_copies': 0, 'barcode': '50d039fc-674a-435c-8dfc-068355a3c09e', 'id': 1, 'publication_date': '2019-07-20', 'subject_category': 'History', 'title': 'Book Three', 'total_copies': 0}, {'author': 'Author Five', 'available_copies': 0, 'barcode': '16c35b31-a8e9-49cd-9d09-ef04209f563f', 'id': 2, 'publication_date': '2017-03-15', 'subject_category': 'Philosophy', 'title': 'Book Five', 'total_copies': 0}, {'author': 'Author Six', 'available_copies': 0, 'barcode': 'cee56f20-0197-4e3c-ac8c-78daa39c7985', 'id': 3, 'publication_date': '2016-09-10', 'subject_category': 'Mathematics', 'title': 'Book Six', 'total_copies': 0}]}
+2025-03-18 14:55:31,335 - INFO - Test Get Book by Barcode - Output: {'author': 'Author Three', 'available_copies': 0, 'barcode': '50d039fc-674a-435c-8dfc-068355a3c09e', 'id': 1, 'publication_date': '2019-07-20', 'subject_category': 'History', 'title': 'Book Three', 'total_copies': 0}
+2025-03-18 14:55:31,531 - INFO - Books added successfully for TestModifyBook.
+2025-03-18 14:55:31,541 - INFO - Test Modify Book - Input: {'title': 'Updated Book Title', 'author': 'Updated Author'} - Output: {'message': 'Book updated successfully'}
+2025-03-18 14:55:31,545 - INFO - Test Modify Nonexistent Book - Input: {'title': 'Nonexistent Book', 'author': 'Nonexistent Author'} - Output: {'error': 'Book not found'}
+2025-03-18 14:55:31,726 - INFO - Books added successfully for TestDeleteBook.
+2025-03-18 14:55:31,741 - INFO - Test Delete Book - Output: {'message': 'Book and all its copies deleted successfully'}
+2025-03-18 14:55:31,745 - INFO - Test Delete Nonexistent Book - Output: {'error': 'Book not found'}
+2025-03-18 14:55:31,922 - INFO - Book added successfully for TestCreateBookCopy.
+2025-03-18 14:55:31,934 - INFO - Test Create Book Copy - Input: {'rack_location': 'A1'} - Output: {'message': 'Book copy created successfully'}
+2025-03-18 14:55:31,937 - INFO - Test Create Book Copy Nonexistent Book - Input: {'rack_location': 'B2'} - Output: {'error': 'Book not found'}
+2025-03-18 14:55:32,122 - INFO - Book and book copy added successfully for TestModifyBookCopy.
+2025-03-18 14:55:32,137 - INFO - Test Modify Book Copy - Input: {'rack_location': 'D4', 'is_available': False} - Output: {'message': 'Book copy modified successfully'}
+2025-03-18 14:55:32,140 - INFO - Test Modify Nonexistent Book Copy - Input: {'rack_location': 'E5', 'is_available': True} - Output: {'error': 'Book not found'}
+2025-03-18 14:55:32,361 - INFO - Book and book copy added successfully for TestDeleteBookCopy.
+2025-03-18 14:55:32,376 - INFO - Test Delete Book Copy - Output: {'message': 'Book copy deleted successfully'}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librarian Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Librarian Dashboard</h2>
+        
+        <!-- User List Section -->
+        <h3>Users</h3>
+        <button id="loadUsersButton">Load Users</button>
+        <div id="userList"></div>
+
+        <!-- User Details Section -->
+        <h3>User Details</h3>
+        <div id="userDetails">
+            <input type="number" id="userId" placeholder="Enter user ID to view details">
+            <button id="loadUserDetailsButton">Load User Details</button>
+            <div id="userDetailsInfo"></div>
+        </div>
+
+        <!-- Delete User Section -->
+        <h3>Delete User</h3>
+        <input type="text" id="userEmailToDelete" placeholder="Enter user email to delete">
+        <button id="deleteUserButton">Delete User</button> <br> <br>
+
+        <button id="logoutButton">Logout</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/librarianDashboard.js') }}"></script>
+</body>
+</html>

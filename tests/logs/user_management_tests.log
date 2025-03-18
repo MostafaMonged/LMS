@@ -1,0 +1,9 @@
+2025-03-18 09:00:16,482 - INFO - Starting test suite for marker: user_management
+2025-03-18 09:00:16,561 - INFO - Setting up user management test suite...
+2025-03-18 09:00:16,854 - INFO - User management test suite setup complete.
+2025-03-18 09:00:16,857 - INFO - Test Get All Users - Output: [{'barcode': 'c3281036-473f-46cb-9464-c31bcb501816', 'email': 'member1@example.com', 'name': 'Member One', 'role': 'Member'}, {'barcode': '140862dc-3eb9-4e5e-b8c5-1af5c6571c3b', 'email': 'member2@example.com', 'name': 'Member Two', 'role': 'Member'}, {'barcode': '02e28433-afad-45b4-bdb4-696d9e6f931f', 'email': 'librarian1@library.com', 'name': 'Librarian One', 'role': 'Librarian'}]
+2025-03-18 09:00:16,863 - INFO - Test Get User By Barcode - Output: {'barcode': 'c3281036-473f-46cb-9464-c31bcb501816', 'email': 'member1@example.com', 'name': 'Member One', 'role': 'Member'}
+2025-03-18 09:00:16,867 - INFO - Test Get User By Invalid Barcode - Output: {'error': 'User not found'}
+2025-03-18 09:00:16,880 - INFO - Test Delete Member By Barcode - Output: {'message': 'User deleted successfully'}
+2025-03-18 09:00:16,886 - INFO - Test Prevent Deleting Librarian - Output: {'error': 'Cannot delete a Librarian'}
+2025-03-18 09:00:16,890 - INFO - Test Delete User With Invalid Barcode - Output: {'error': 'User not found'}
